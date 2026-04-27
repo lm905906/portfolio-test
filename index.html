@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B L Laxmi Madhuri — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0f; --surface: #13131a; --surface2: #1c1c26;
+    --accent: #7c6dfa; --accent2: #00d4aa; --accent3: #f5a623;
+    --text: #f0eeff; --muted: #8888aa; --border: rgba(124,109,250,0.18);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(10,10,15,0.88); backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--accent); letter-spacing: -0.02em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: var(--muted); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 6rem 2rem 4rem; position: relative; text-align: center; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,109,250,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(0,212,170,0.10) 0%, transparent 60%);
+  }
+  .hero-tag {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent2); border: 0.5px solid var(--accent2); border-radius: 2rem;
+    padding: 0.35rem 1rem; margin-bottom: 1.5rem; display: inline-block; position: relative;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5.5rem); line-height: 1.05; letter-spacing: -0.03em;
+    margin-bottom: 0.3rem; position: relative;
+    background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-family: 'Syne', sans-serif; font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--accent2); font-weight: 500; margin-bottom: 1.5rem; position: relative;
+  }
+  .hero p { font-size: 1rem; color: var(--muted); max-width: 540px; line-height: 1.8; margin: 0 auto 2.5rem; position: relative; }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn-primary {
+    background: var(--accent); color: #fff; border: none; border-radius: 2rem;
+    padding: 0.75rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    font-weight: 500; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,109,250,0.35); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    border: 0.5px solid rgba(255,255,255,0.25); border-radius: 2rem;
+    padding: 0.75rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    font-weight: 400; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); background: rgba(124,109,250,0.08); }
+  .stats-row { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; position: relative; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 960px; margin: 0 auto; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 0.6rem; }
+  .section-heading { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--text); margin-bottom: 2.5rem; line-height: 1.2; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+  .skill-card {
+    background: var(--surface); border: 0.5px solid var(--border); border-radius: 16px;
+    padding: 1.4rem 1.5rem; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden;
+  }
+  .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--card-accent, var(--accent)); opacity: 0; transition: opacity 0.2s; }
+  .skill-card:hover { border-color: var(--card-accent, var(--accent)); transform: translateY(-3px); }
+  .skill-card:hover::before { opacity: 1; }
+  .skill-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+  .skill-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
+  .skill-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+  .tag { font-size: 0.7rem; padding: 0.25rem 0.65rem; border-radius: 1rem; background: rgba(124,109,250,0.12); color: var(--accent); border: 0.5px solid rgba(124,109,250,0.25); }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; gap: 1.2rem; }
+  .project-card {
+    background: var(--surface); border: 0.5px solid var(--border); border-radius: 16px;
+    padding: 1.5rem 1.8rem; display: grid; grid-template-columns: 1fr auto;
+    align-items: start; gap: 1rem; transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover { border-color: rgba(124,109,250,0.5); transform: translateY(-2px); }
+  .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
+  .project-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+  .project-badge { font-size: 0.68rem; padding: 0.3rem 0.75rem; border-radius: 1rem; white-space: nowrap; font-weight: 500; }
+
+  /* CERTIFICATIONS */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .cert-card {
+    background: var(--surface); border: 0.5px solid var(--border); border-radius: 14px;
+    padding: 1.2rem 1.4rem; display: flex; align-items: flex-start; gap: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(0,212,170,0.45); transform: translateY(-2px); }
+  .cert-dot { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .cert-name { font-size: 0.88rem; font-weight: 500; margin-bottom: 0.25rem; line-height: 1.4; }
+  .cert-issuer { font-size: 0.75rem; color: var(--muted); }
+  .cert-badge { display: inline-block; margin-top: 0.4rem; font-size: 0.65rem; padding: 0.2rem 0.55rem; border-radius: 1rem; font-weight: 500; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .contact-card {
+    background: var(--surface); border: 0.5px solid var(--border); border-radius: 12px;
+    padding: 1.2rem 1.5rem; text-align: center; transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none; display: block;
+  }
+  .contact-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+  .contact-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .contact-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.3rem; }
+  .contact-val { font-size: 0.82rem; color: var(--accent2); word-break: break-all; }
+
+  .divider { border: none; border-top: 0.5px solid var(--border); margin: 0; }
+  footer { text-align: center; padding: 2rem; border-top: 0.5px solid var(--border); font-size: 0.78rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">B L Madhuri</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certs">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Open to Opportunities</div>
+  <h1>B L Laxmi Madhuri</h1>
+  <div class="hero-sub">Software Engineer &amp; Data Professional</div>
+  <p>Passionate about building efficient systems with expertise in DSA, Java, Python, Data Analytics, Business Analytics, Multi-Cloud, and DevOps.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+    <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Core Skills</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Live Projects</div></div>
+    <div class="stat"><div class="stat-num">Multi</div><div class="stat-label">Cloud Ready</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-title">What I Know</div>
+  <div class="section-heading">Technical Expertise</div>
+  <div class="skills-grid">
+
+    <div class="skill-card" style="--card-accent:#7c6dfa">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-name">DSA with Java</div>
+      <div class="skill-desc">Strong command of data structures and algorithms — arrays, trees, graphs, dynamic programming — implemented in Java.</div>
+      <div class="skill-tags"><span class="tag">Arrays</span><span class="tag">Trees</span><span class="tag">Graphs</span><span class="tag">DP</span></div>
+    </div>
+
+    <div class="skill-card" style="--card-accent:#f5a623">
+      <div class="skill-icon">☕</div>
+      <div class="skill-name">Java</div>
+      <div class="skill-desc">OOP design, Spring Boot, multi-threading, and enterprise-grade backend development with Java ecosystem.</div>
+      <div class="skill-tags">
+        <span class="tag" style="color:#f5a623;background:rgba(245,166,35,0.12);border-color:rgba(245,166,35,0.25)">OOP</span>
+        <span class="tag" style="color:#f5a623;background:rgba(245,166,35,0.12);border-color:rgba(245,166,35,0.25)">Spring Boot</span>
+        <span class="tag" style="color:#f5a623;background:rgba(245,166,35,0.12);border-color:rgba(245,166,35,0.25)">JVM</span>
+      </div>
+    </div>
+
+    <div class="skill-card" style="--card-accent:#3b82f6">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-desc">Scripting, automation, data manipulation, and machine learning with Python's rich ecosystem of libraries.</div>
+      <div class="skill-tags">
+        <span class="tag" style="color:#60a5fa;background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.25)">Pandas</span>
+        <span class="tag" style="color:#60a5fa;background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.25)">NumPy</span>
+        <span class="tag" style="color:#60a5fa;background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.25)">Scikit-learn</span>
+      </div>
+    </div>
+
+    <div class="skill-card" style="--card-accent:#00d4aa">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Data Analytics</div>
+      <div class="skill-desc">Transforming raw data into actionable insights using statistical methods, visualisation, and storytelling.</div>
+      <div class="skill-tags">
+        <span class="tag" style="color:#00d4aa;background:rgba(0,212,170,0.10);border-color:rgba(0,212,170,0.25)">SQL</span>
+        <span class="tag" style="color:#00d4aa;background:rgba(0,212,170,0.10);border-color:rgba(0,212,170,0.25)">Tableau</span>
+        <span class="tag" style="color:#00d4aa;background:rgba(0,212,170,0.10);border-color:rgba(0,212,170,0.25)">Power BI</span>
+      </div>
+    </div>
+
+    <div class="skill-card" style="--card-accent:#f472b6">
+      <div class="skill-icon">📈</div>
+      <div class="skill-name">Business Analytics</div>
+      <div class="skill-desc">Bridging data and business strategy — forecasting, KPI tracking, and decision support for stakeholders.</div>
+      <div class="skill-tags">
+        <span class="tag" style="color:#f472b6;background:rgba(244,114,182,0.10);border-color:rgba(244,114,182,0.25)">Excel</span>
+        <span class="tag" style="color:#f472b6;background:rgba(244,114,182,0.10);border-color:rgba(244,114,182,0.25)">Forecasting</span>
+        <span class="tag" style="color:#f472b6;background:rgba(244,114,182,0.10);border-color:rgba(244,114,182,0.25)">KPI</span>
+      </div>
+    </div>
+
+    <div class="skill-card" style="--card-accent:#fb923c">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Multi-Cloud &amp; DevOps</div>
+      <div class="skill-desc">Cloud-native deployments across AWS, Azure &amp; GCP, with CI/CD, containerisation, and IaC practices.</div>
+      <div class="skill-tags">
+        <span class="tag" style="color:#fb923c;background:rgba(251,146,60,0.10);border-color:rgba(251,146,60,0.25)">AWS</span>
+        <span class="tag" style="color:#fb923c;background:rgba(251,146,60,0.10);border-color:rgba(251,146,60,0.25)">Docker</span>
+        <span class="tag" style="color:#fb923c;background:rgba(251,146,60,0.10);border-color:rgba(251,146,60,0.25)">Kubernetes</span>
+        <span class="tag" style="color:#fb923c;background:rgba(251,146,60,0.10);border-color:rgba(251,146,60,0.25)">CI/CD</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-title">Portfolio</div>
+  <div class="section-heading">Featured Projects</div>
+  <div class="projects-grid">
+
+    <div class="project-card" style="border-color:rgba(124,109,250,0.25)">
+      <div>
+        <div class="project-title">Alzheimer's Disease Prediction using ML</div>
+        <div class="project-desc">Built a machine learning pipeline to predict the likelihood of Alzheimer's disease using clinical and cognitive assessment data. Compared multiple models — Logistic Regression, Random Forest, SVM, and XGBoost — to achieve best-in-class accuracy. Included feature importance analysis to highlight key biomarkers driving predictions.</div>
+        <div class="skill-tags" style="margin-top:0.8rem">
+          <span class="tag">Python</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">ML</span>
+        </div>
+      </div>
+      <span class="project-badge" style="background:rgba(124,109,250,0.15);color:#a78bfa;border:0.5px solid rgba(124,109,250,0.3)">ML / AI</span>
+    </div>
+
+    <div class="project-card" style="border-color:rgba(0,212,170,0.20)">
+      <div>
+        <div class="project-title">Web Scraping &amp; Data Analytics using Python</div>
+        <div class="project-desc">Automated extraction of structured data from websites using BeautifulSoup and Selenium. Cleaned and transformed the scraped datasets with Pandas, then performed exploratory data analysis and visualised trends using Matplotlib and Seaborn to surface actionable business insights.</div>
+        <div class="skill-tags" style="margin-top:0.8rem">
+          <span class="tag" style="color:#00d4aa;background:rgba(0,212,170,0.10);border-color:rgba(0,212,170,0.25)">Python</span>
+          <span class="tag" style="color:#00d4aa;background:rgba(0,212,170,0.10);border-color:rgba(0,212,170,0.25)">BeautifulSoup</span>
+          <span class="tag" style="color:#00d4aa;background:rgba(0,212,170,0.10);border-color:rgba(0,212,170,0.25)">Selenium</span>
+          <span class="tag" style="color:#00d4aa;background:rgba(0,212,170,0.10);border-color:rgba(0,212,170,0.25)">Pandas</span>
+          <span class="tag" style="color:#00d4aa;background:rgba(0,212,170,0.10);border-color:rgba(0,212,170,0.25)">Matplotlib</span>
+        </div>
+      </div>
+      <span class="project-badge" style="background:rgba(0,212,170,0.12);color:#00d4aa;border:0.5px solid rgba(0,212,170,0.3)">Analytics</span>
+    </div>
+
+    <div class="project-card" style="border-color:rgba(239,68,68,0.22)">
+      <div>
+        <div class="project-title">Blood Link — Blood Donor Connect Application</div>
+        <div class="project-desc">A life-saving web/mobile application that connects blood donors with recipients in real time. Features include donor registration, blood group filtering, location-based matching, request broadcasting, and emergency alert notifications. Built to reduce response time in critical medical situations.</div>
+        <div class="skill-tags" style="margin-top:0.8rem">
+          <span class="tag" style="color:#f87171;background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.25)">Java</span>
+          <span class="tag" style="color:#f87171;background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.25)">Spring Boot</span>
+          <span class="tag" style="color:#f87171;background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.25)">SQL</span>
+          <span class="tag" style="color:#f87171;background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.25)">REST API</span>
+        </div>
+      </div>
+      <span class="project-badge" style="background:rgba(239,68,68,0.12);color:#f87171;border:0.5px solid rgba(239,68,68,0.3)">App Dev</span>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-title">Learning Journey</div>
+  <div class="section-heading">Certifications</div>
+  <div class="cert-grid">
+
+    <div class="cert-card">
+      <div class="cert-dot" style="background:rgba(255,153,0,0.15)">☁️</div>
+      <div>
+        <div class="cert-name">AWS Cloud Foundations &amp; Architecture</div>
+        <div class="cert-issuer">Amazon Web Services · via Coursera</div>
+        <span class="cert-badge" style="background:rgba(255,153,0,0.15);color:#f59e0b;border:0.5px solid rgba(255,153,0,0.3)">Coursera Verified</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-dot" style="background:rgba(0,212,170,0.15)">🏅</div>
+      <div>
+        <div class="cert-name">SQL Problem Solving Certification</div>
+        <div class="cert-issuer">HackerRank</div>
+        <span class="cert-badge" style="background:rgba(0,212,170,0.12);color:#00d4aa;border:0.5px solid rgba(0,212,170,0.3)">HackerRank Badge</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-title">Let's Connect</div>
+  <div class="section-heading">Get in Touch</div>
+  <div class="contact-grid">
+
+    <a class="contact-card" href="mailto:laxmimadhuri.b@gmail.com">
+      <div class="contact-icon">✉️</div>
+      <div class="contact-label">Email</div>
+      <div class="contact-val">laxmimadhuri.b@gmail.com</div>
+    </a>
+
+    <a class="contact-card" href="https://www.linkedin.com/in/b-laxmi-madhuri-532a873a7/" target="_blank">
+      <div class="contact-icon">💼</div>
+      <div class="contact-label">LinkedIn</div>
+      <div class="contact-val">b-laxmi-madhuri-532a873a7</div>
+    </a>
+
+    <a class="contact-card" href="https://github.com/lm905906" target="_blank">
+      <div class="contact-icon">🐙</div>
+      <div class="contact-label">GitHub</div>
+      <div class="contact-val">github.com/lm905906</div>
+    </a>
+
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <div class="contact-label">Location</div>
+      <div class="contact-val">Hyderabad, India</div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 B L Laxmi Madhuri · Crafted with passion from Hyderabad 🇮🇳</p>
+</footer>
+
+</body>
+</html>
